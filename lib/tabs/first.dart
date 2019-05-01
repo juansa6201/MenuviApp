@@ -28,9 +28,6 @@ class DailyFoodState extends State<DailyFood> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Flutter Tincho'),
-        ),
         body: FutureBuilder(
           future: FirebaseDatabase.instance
               .reference()
