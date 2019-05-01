@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-
 import 'package:menuvi_app/tabs/first.dart';
 import 'package:menuvi_app/tabs/second.dart';
 import 'package:menuvi_app/tabs/third.dart';
@@ -22,8 +21,8 @@ class MyApp extends StatelessWidget{
         accentColor: Colors.teal[400],
         fontFamily: 'Montserrat',
         textTheme: TextTheme(
-          headline: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
-          title: TextStyle(fontSize: 30, fontWeight: FontWeight.w300),
+          headline: TextStyle(fontSize: 36, fontWeight: FontWeight.w600),
+          title: TextStyle(fontSize: 26, fontWeight: FontWeight.w300),
           subtitle: TextStyle(fontSize: 25.0),
           body1: TextStyle(fontSize: 15),
         ),
@@ -61,7 +60,7 @@ class MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
         backgroundColor: Theme.of(context).accentColor,
       ),
       body: TabBarView(
-          children: <Widget>[new FirstTab(), new SecondTab(), new ThirdTab()],
+          children: <Widget>[new FirstTab(), new ThirdTab()],
         controller: controller,
       ),
       bottomNavigationBar: new Material(
@@ -70,9 +69,6 @@ class MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
           tabs: <Tab>[
             new Tab(
               icon: new Icon(Icons.restaurant),
-            ),
-            new Tab(
-              icon: new Icon(Icons.calendar_today),
             ),
             new Tab(
               icon: new Icon(Icons.settings),

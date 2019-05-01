@@ -1,16 +1,14 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 
 class FirstTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    initializeDateFormatting();
-    DateTime date = DateTime.now();
-    return Scaffold(
-      body: Center(
-        child: new DailyFood(),
-      ),
+    initializeDateFormatting("de_DE");
+    return Container(
+      child: new DailyFood(),
     );
   }
 }
@@ -23,34 +21,60 @@ class DailyFood extends StatefulWidget {
 }
 
 class DailyFoodState extends State<DailyFood> {
-  //List<dynamic> principales = List();
-  Text principales2 = Text("No hay valores");
+  String principal = 'Cargando contenido';
+  String opcion = 'Cargando opcion';
+
+  daySelector() {
+    final DateTime date = DateTime.now();
+    String formatted = new DateFormat('dd-MM').format(date);
+    return new FutureBuilder(
+      future: FirebaseDatabase.instance
+          .reference()
+          .child(formatted)
+          .once()
+          .then((DataSnapshot snapshot) {
+        principal = snapshot.value['principal'].toString();
+        opcion = snapshot.value['opcion'].toString();
+      }),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        return new Center(
+            child: new Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                new Row(
+                  children: <Widget>[
+                    Expanded(
+                        child: new Text(principal,
+                            style: Theme
+                                .of(context)
+                                .textTheme
+                                .headline,
+                            textAlign: TextAlign.center)),
+                  ],
+                ),
+                new Row(
+                  children: <Widget>[
+                    Expanded(
+                        child: new Text(opcion,
+                            style: Theme
+                                .of(context)
+                                .textTheme
+                                .title,
+                            textAlign: TextAlign.center),
+                    )
+                  ],
+                ),
+              ],
+            ));
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: FutureBuilder(
-          future: FirebaseDatabase.instance
-              .reference()
-              .child('lunes')
-              .once()
-              .then((DataSnapshot snapshot) {
-            Map<dynamic, dynamic> values = snapshot.value;
-            principales2 = Text(snapshot.value['principal'].toString());
-            //Lists
-            //values.forEach((key, value) {
-              //print(snapshot.value['principal']);
-              //principales.add(snapshot.value['principal']);
-            //}
-          }),
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
-            return new Column(
-              children: <Widget>[
-                principales2,
-              ],
-            );
-          },
-        )
+      body: daySelector(),
     );
   }
 }
