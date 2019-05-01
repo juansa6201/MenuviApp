@@ -23,7 +23,8 @@ class DailyFood extends StatefulWidget {
 }
 
 class DailyFoodState extends State<DailyFood> {
-  List<dynamic> principales = List();
+  //List<dynamic> principales = List();
+  Text principales2 = Text("No hay valores");
 
   @override
   Widget build(BuildContext context) {
@@ -35,23 +36,21 @@ class DailyFoodState extends State<DailyFood> {
               .once()
               .then((DataSnapshot snapshot) {
             Map<dynamic, dynamic> values = snapshot.value;
-            print(snapshot.value);
-            values.forEach((key, value) {
-              print(snapshot.value['principal']);
-              principales.add(snapshot.value['principal']);
-            });
-            print(principales);
+            principales2 = Text(snapshot.value['principal'].toString());
+            //Lists
+            //values.forEach((key, value) {
+              //print(snapshot.value['principal']);
+              //principales.add(snapshot.value['principal']);
+            //}
           }),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
-            return ListView.builder(
-              itemCount: principales.length,
-              itemBuilder: (context, index) {
-                return Card(
-                  child: Text(principales[index]),
-                );
-              },
+            return new Column(
+              children: <Widget>[
+                principales2,
+              ],
             );
           },
-        ));
+        )
+    );
   }
 }
