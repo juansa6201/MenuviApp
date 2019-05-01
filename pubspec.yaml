@@ -1,0 +1,23 @@
+name: menuvi_app
+description: Aplicacion para conocer el menu del dia en el ITS Villada.
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  firebase_core: ^0.3.4
+  firebase_database: ^2.0.3
+
+  cupertino_icons: ^0.1.2
+  intl: ^0.15.7
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
