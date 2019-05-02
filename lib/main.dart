@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:menuvi_app/tabs/first.dart';
-import 'package:menuvi_app/tabs/second.dart';
 import 'package:menuvi_app/tabs/third.dart';
 
 Future<void> main() async{
@@ -23,8 +22,8 @@ class MyApp extends StatelessWidget{
         textTheme: TextTheme(
           headline: TextStyle(fontSize: 36, fontWeight: FontWeight.w600),
           title: TextStyle(fontSize: 26, fontWeight: FontWeight.w300),
-          subtitle: TextStyle(fontSize: 25.0),
-          body1: TextStyle(fontSize: 15),
+          body1: TextStyle(fontSize: 28),
+          subtitle: TextStyle(fontSize: 25, fontStyle: FontStyle.italic),
         ),
       ),
     );
