@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:menuvi_app/tabs/first.dart';
-import 'package:menuvi_app/tabs/third.dart';
+import 'package:menuvi_app/tabs/second.dart';
 
 Future<void> main() async{
   debugPaintSizeEnabled=false;
@@ -42,7 +42,7 @@ class MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    controller = new TabController(length: 3, vsync: this);
+    controller = new TabController(length: 2, vsync: this);
   }
 
   @override
@@ -59,22 +59,8 @@ class MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
         backgroundColor: Theme.of(context).accentColor,
       ),
       body: TabBarView(
-          children: <Widget>[new FirstTab(), new ThirdTab()],
+          children: <Widget>[new FirstTab(), new SecondTab()],
         controller: controller,
-      ),
-      bottomNavigationBar: new Material(
-        child: new TabBar(
-          labelColor: Theme.of(context).accentColor,
-          tabs: <Tab>[
-            new Tab(
-              icon: new Icon(Icons.restaurant),
-            ),
-            new Tab(
-              icon: new Icon(Icons.settings),
-            ),
-          ],
-          controller: controller,
-        ),
       ),
     );
   }
