@@ -29,9 +29,8 @@ class Database {
         p_3 = snapshot.value['p_3'].toString();
       }),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
-        return new Scaffold(
-            backgroundColor: Colors.red,
-            body: new Column(
+        return new Container(
+            child: new Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[

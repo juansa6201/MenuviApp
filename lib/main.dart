@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:menuvi_app/tabs/first.dart';
-import 'package:menuvi_app/tabs/second.dart';
 
-Future<void> main() async{
-  debugPaintSizeEnabled=false;
+main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget{
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: "Menuvi",
+      builder: (context, child) {
+        return ScrollConfiguration(
+          behavior: MyBehavior(),
+          child: child,
+        );
+      },
       home: new MyHome(),
       theme: ThemeData(
         brightness: Brightness.light,
-        primaryColor: Colors.teal[800],
+        primaryColor: Colors.white,
         accentColor: Colors.teal[400],
         fontFamily: 'Montserrat',
         textTheme: TextTheme(
@@ -36,32 +40,24 @@ class MyHome extends StatefulWidget {
 }
 
 class MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
-
-  TabController controller;
-
-  @override
-  void initState() {
-    super.initState();
-    controller = new TabController(length: 2, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Menuvi"),
-        backgroundColor: Theme.of(context).accentColor,
+        backgroundColor: Theme.of(context).primaryColor,
+        title: new Text("MENUVI"),
+        centerTitle: true,
+        elevation: 3.0,
       ),
-      body: TabBarView(
-          children: <Widget>[new FirstTab(), new SecondTab()],
-        controller: controller,
-      ),
+      body: new FirstTab(),
     );
+  }
+}
+
+class MyBehavior extends ScrollBehavior {
+  @override
+  Widget buildViewportChrome(
+      BuildContext context, Widget child, AxisDirection axisDirection) {
+    return child;
   }
 }
