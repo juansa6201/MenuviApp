@@ -18,8 +18,7 @@ class DailyFood extends StatefulWidget {
   DailyFoodState createState() => new DailyFoodState();
 }
 
-class DailyFoodState extends State<DailyFood> {
-  final Widget data = Database().daySelector();
+class DailyFoodState extends State<DailyFood>{
   final PageController controller = new PageController();
   int currentPage = 0;
   bool lastPage = false;
@@ -39,7 +38,6 @@ class DailyFoodState extends State<DailyFood> {
   Widget build(BuildContext context) {
     return Container(
       color: Color(0xFFF5F5F5),
-      padding: EdgeInsets.all(20.0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
@@ -47,26 +45,11 @@ class DailyFoodState extends State<DailyFood> {
             flex: 3,
             child: PageView(
               children: <Widget>[
-                Walkthrough(
-                  title: "TEXTO",
-                  content: "TEXTO",
-                  imageIcon: Icons.mobile_screen_share,
-                ),
-                Walkthrough(
-                  title: "TEXTO",
-                  content: "TEXTO",
-                  imageIcon: Icons.search,
-                ),
-                Walkthrough(
-                  title: "TEXTO",
-                  content: "TEXTO",
-                  imageIcon: Icons.shopping_cart,
-                ),
-                Walkthrough(
-                  title: "TEXTO",
-                  content: "TEXTO",
-                  imageIcon: Icons.verified_user,
-                ),
+                Walkthrough(),
+                Walkthrough(),
+                Walkthrough(),
+                Walkthrough(),
+                Walkthrough(),
               ],
               controller: controller,
               onPageChanged: _onPageChanged,

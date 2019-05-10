@@ -44,10 +44,11 @@ class MyHomeState extends State<MyHome> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-        title: new Text("MENUVI"),
+        backgroundColor: Color(0xFFF5F5F5),
+        title: new Text("MENUVI", style: TextStyle(fontSize: 20)),
         centerTitle: true,
-        elevation: 3.0,
+        elevation: 0.0,
+
       ),
       body: new FirstTab(),
     );
