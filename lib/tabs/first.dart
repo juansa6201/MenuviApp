@@ -45,11 +45,12 @@ class DailyFoodState extends State<DailyFood>{
             flex: 3,
             child: PageView(
               children: <Widget>[
-                Walkthrough(),
-                Walkthrough(),
-                Walkthrough(),
-                Walkthrough(),
-                Walkthrough(),
+                Walkthrough('10-05'),
+                Walkthrough('11-05'),
+                Walkthrough('12-05'),
+                Walkthrough('13-05'),
+                Walkthrough('14-05'),
+
               ],
               controller: controller,
               onPageChanged: _onPageChanged,

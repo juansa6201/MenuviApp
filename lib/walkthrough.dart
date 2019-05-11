@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:menuvi_app/database.dart';
 
-final Widget data = Database().daySelector();
 
 class Walkthrough extends StatefulWidget {
+  final String day;
+  Walkthrough(this.day);
   @override
   WalkthroughState createState() {
-    return WalkthroughState();
+    return WalkthroughState(this.day);
   }
 }
 
 class WalkthroughState extends State<Walkthrough>
     with SingleTickerProviderStateMixin {
-
+  final String final_day;
+  WalkthroughState(this.final_day);
   @override
   Widget build(BuildContext context) {
     return new Container(
@@ -26,8 +28,9 @@ class WalkthroughState extends State<Walkthrough>
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            data,
-          ],
+          Database().daySelector(final_day),
+
+        ],
         ),
       ),
     );

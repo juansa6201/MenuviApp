@@ -11,14 +11,12 @@ class Database {
   String p_3 = 'Postre n°3';
   String sopa = 'Sopa';
 
-  daySelector() {
-    final DateTime date = DateTime.now();
-    String formatted = new DateFormat('dd-MM').format(date);
+  daySelector(String day) {
 
     return new FutureBuilder(
       future: FirebaseDatabase.instance
           .reference()
-          .child(formatted)
+          .child(day)
           .once()
           .then((DataSnapshot snapshot) {
         principal = snapshot.value['principal'].toString();
